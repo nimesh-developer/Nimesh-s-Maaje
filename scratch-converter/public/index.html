@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scratch Text Converter</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; line-height: 1.6; }
+        .container { display: flex; gap: 20px; }
+        .column { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+        textarea { width: 100%; height: 300px; font-family: monospace; }
+        #render-area { border: 1px solid #ccc; min-height: 300px; padding: 10px; background-color: #f9f9f9; overflow-x: auto; }
+        h1, h2, h3 { margin-top: 0; }
+        .docs { background: #eee; padding: 20px; margin-top: 40px; border-radius: 8px; }
+    </style>
+    <script src="https://scratchblocks.github.io/js/scratchblocks-v3.6.4-min.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <h1>Scratch Text Converter</h1>
+
+    <div class="container">
+        <!-- Decompiler Column -->
+        <div class="column">
+            <h2>Decompile SB3 to Text</h2>
+            <p>Upload an .sb3 file to see its Scratchblocks representation.</p>
+            <form id="uploadForm">
+                <input type="file" id="sb3File" accept=".sb3" required>
+                <button type="submit">Decompile to Text</button>
+            </form>
+            <div id="uploadStatus"></div>
+
+            <h3>Scratchblocks Syntax (Read-Only)</h3>
+            <textarea id="scratchblocksOutput" readonly placeholder="Parsed scratchblocks text will appear here..."></textarea>
+            <button id="renderBtn">Render Diagrams Below</button>
+
+            <h3>Diagrams</h3>
+            <div id="render-area"></div>
+        </div>
+
+        <!-- Compiler Column -->
+        <div class="column">
+            <h2>Compile Text to SB3</h2>
+            <p>Write your Scratch code using Fractch syntax and compile it to an .sb3 file.</p>
+
+            <h3>Fractch Syntax (Multiple Sprites)</h3>
+            <div id="spritesContainer">
+                <div class="sprite-editor">
+                    <label>Sprite Name: <input type="text" class="sprite-name" value="Sprite1"></label>
+                    <button class="remove-sprite-btn" style="float: right;">Remove</button>
+                    <textarea class="sprite-code">sprite "Sprite1";
+
+when flag at 0,0 {
+  say "Hello, world!";
+  move 10;
+}</textarea>
+                </div>
+            </div>
+            <button id="addSpriteBtn" style="margin-bottom: 10px;">Add Sprite</button>
+            <br>
+            <button id="compileBtn">Compile and Download SB3</button>
+            <div id="compileStatus"></div>
+        </div>
+    </div>
+
+    <!-- Guide / Documentation -->
+    <div class="docs" id="guide">
+        <h2>Documentation & Guide</h2>
+        <p>This tool serves two purposes: converting visual block syntax into text and vice versa. Because the text language that <em>draws</em> blocks is different from the text language that <em>compiles</em> to working Scratch code, this tool uses two different syntaxes.</p>
+
+        <h3>1. Scratchblocks (Drawing)</h3>
+        <p>This is the standard <a href="https://en.scratch-wiki.info/wiki/Block_Plugin/Syntax" target="_blank">Scratchblocks syntax</a>. It is purely visual. You upload an .sb3 file on the left side, and we extract this syntax so you can see exactly what the blocks look like and render diagrams for sharing.</p>
+        <pre>
+when green flag clicked
+move (10) steps
+say [Hello, world!]
+        </pre>
+
+        <h3>2. Fractch (Compiling)</h3>
+        <p>To compile text back into a working <code>.sb3</code> file, we use a tool called <strong>Fractch</strong>. Fractch uses a more standard programming language syntax that logically maps to Scratch's AST.</p>
+        <ul>
+            <li>Files must start with a target declaration, e.g., <code>sprite "Sprite1";</code></li>
+            <li>Hats use the <code>when</code> keyword, e.g., <code>when flag at 0,0 { ... }</code></li>
+            <li>Arguments are placed after the keyword, e.g., <code>move 10;</code></li>
+            <li>Strings use quotes, e.g., <code>say "Hello, world!";</code></li>
+        </ul>
+        <pre>
+sprite "Sprite1";
+
+when flag at 0,0 {
+  say "Hello, world!";
+  move 10;
+}
+        </pre>
+        <p>Write your Fractch code on the right side and click "Compile" to download a working <code>.sb3</code> project containing your sprite and scripts!</p>
+    </div>
+</body>
+</html>
