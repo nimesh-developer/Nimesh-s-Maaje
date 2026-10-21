@@ -1,0 +1,49 @@
+Moving Trashcan - How to Use
+
+This document explains how to interact with the two software components of the Moving Trashcan project.
+
+=======================================================
+Part 1: Video Prototype Tracker (prototype_video_tracker.py)
+=======================================================
+This script is used on your computer to process a pre-recorded video of a thrown object to test the trajectory prediction algorithm.
+
+Prerequisites:
+1. Ensure you have Python 3 installed.
+2. Install dependencies: pip install opencv-python numpy
+
+How to Run:
+1. Record a short video of an object being tossed in an arc (like throwing a crumpled piece of paper).
+2. Save the video as `sample_throw.mp4` in the same directory as the script.
+3. Open a terminal/command prompt in the directory and run:
+   python3 prototype_video_tracker.py
+
+How to Use:
+1. When the script runs, it will pause on the first frame of the video.
+2. Use your mouse to draw a bounding box around the object you want to track (the "trash").
+3. Press the 'ENTER' or 'SPACE' key to confirm the selection.
+4. The video will play. The software will track the object, draw a blue line for its past trajectory, an orange line predicting its future path, and a red circle indicating the "IMPACT AREA".
+5. Press the 'ESC' key at any time to exit the program.
+
+=======================================================
+Part 2: Real-Time Robot Code (trashcan_robot_code.py)
+=======================================================
+This script runs autonomously on the Raspberry Pi mounted on the physical trashcan to actively track and catch objects.
+
+Prerequisites:
+1. Ensure you have followed all steps in `software_deployment.txt` to install the OS, libraries, and set up the systemd service.
+
+How to Use (Autonomous Mode):
+1. Power on the trashcan. The systemd service will automatically start the script on boot.
+2. Ensure the area has decent lighting. The script uses motion detection (background subtraction) to find moving objects.
+3. Stand at a distance and throw an object (like a brightly colored ball or a piece of paper) towards the trashcan in an arc.
+4. The trashcan will detect the moving object, calculate its trajectory, predict where it will land, and drive its Mecanum wheels smoothly left or right to position itself under the falling object.
+
+How to Use (Manual Testing Mode via SSH):
+If you need to test or debug the robot code manually:
+1. Connect to the Raspberry Pi via SSH (or open a terminal directly on it if a monitor is attached).
+2. Stop the background service:
+   sudo systemctl stop trashcan.service
+3. Run the script manually:
+   python3 /home/pi/trashcan_robot/trashcan_robot_code.py
+4. (Optional) If you have a graphical interface running on the Pi (like VNC or an HDMI monitor), you can uncomment the line `cv2.imshow('Robot View', frame)` in the script to see what the camera sees in real-time, including the tracking and prediction markers.
+5. Press 'q' in the OpenCV window (if active) or 'Ctrl+C' in the terminal to stop the script.
