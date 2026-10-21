@@ -1,0 +1,50 @@
+Moving Trashcan - Software Deployment Instructions
+
+These instructions guide you through embedding the code into the Raspberry Pi so it works seamlessly and automatically.
+
+Step 1: Operating System Setup
+1. Flash Raspberry Pi OS (Bullseye or Bookworm, 64-bit recommended) onto your MicroSD card using the Raspberry Pi Imager.
+2. Insert the SD card into the Pi, connect a monitor and keyboard, and boot it up.
+3. Connect the Pi to your Wi-Fi network.
+4. Enable the Camera Interface and I2C/SPI (if needed for encoders) using `sudo raspi-config` (under Interfacing Options).
+
+Step 2: Installing Dependencies
+1. Open a terminal on the Raspberry Pi.
+2. Update the system:
+   sudo apt-get update && sudo apt-get upgrade -y
+3. Install Python pip and required libraries:
+   sudo apt-get install python3-pip python3-opencv -y
+4. Install additional Python packages:
+   pip3 install numpy RPi.GPIO
+
+Step 3: Transferring the Code
+1. Transfer `trashcan_robot_code.py` to the Raspberry Pi (e.g., place it in `/home/pi/trashcan_robot/`).
+2. Make sure the script is executable:
+   chmod +x /home/pi/trashcan_robot/trashcan_robot_code.py
+
+Step 4: Making it Work Seamlessly on Boot
+To make the code run perfectly without manual intervention every time you turn on the trashcan, create a systemd service.
+
+1. Create a service file:
+   sudo nano /etc/systemd/system/trashcan.service
+2. Add the following content to the file:
+   [Unit]
+   Description=Trashcan Robot Tracker
+   After=network.target
+
+   [Service]
+   ExecStart=/usr/bin/python3 /home/pi/trashcan_robot/trashcan_robot_code.py
+   WorkingDirectory=/home/pi/trashcan_robot
+   StandardOutput=inherit
+   StandardError=inherit
+   Restart=always
+   User=pi
+
+   [Install]
+   WantedBy=multi-user.target
+3. Save and exit (Ctrl+X, Y, Enter).
+4. Enable and start the service:
+   sudo systemctl enable trashcan.service
+   sudo systemctl start trashcan.service
+
+Now, whenever the Raspberry Pi is powered on, the tracking code will automatically start, making the trashcan ready to catch trash seamlessly.

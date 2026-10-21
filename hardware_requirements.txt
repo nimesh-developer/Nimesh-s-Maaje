@@ -1,0 +1,28 @@
+Moving Trashcan - Hardware Requirements & Bill of Materials
+
+To build a moving trashcan that can catch thrown trash without tipping over (falling over), you will need the following hardware components. Stability is key, so we focus on a low center of gravity and omnidirectional movement to avoid sudden turns that could cause tipping.
+
+1. Computing and Vision:
+   - Raspberry Pi 4 Model B (4GB or 8GB RAM recommended for image processing)
+   - Raspberry Pi Camera Module V2 (or a high-framerate USB webcam). It will be mounted on the trashcan.
+   - MicroSD Card (32GB+ Class 10 for OS and software)
+
+2. Chassis and Structure:
+   - A Trashcan (lightweight upper section, wide base if possible).
+   - Custom Chassis Base: A wide, heavy metal or thick acrylic base plate to mount under the trashcan. This is crucial for keeping the center of gravity low.
+   - Weights: Additional metal weights (e.g., dive weights or barbell plates) to attach to the bottom base plate. This ensures the bottom is significantly heavier than the top.
+   - Brackets and Standoffs: L-brackets and heavy-duty standoffs to securely attach the trashcan to the base plate. Structural supports to prevent wobbling.
+
+3. Locomotion (Omnidirectional for smooth catching):
+   - 4x Mecanum Wheels (allows moving in any direction without having to rotate the entire heavy base, which reduces the risk of tipping from centrifugal force).
+   - 4x DC Motors with Encoders (High torque, e.g., 12V planetary gear motors) to handle the weight and provide smooth acceleration.
+   - 2x Dual Motor Drivers (e.g., L298N or preferably more powerful ones like BTS7960 depending on motor stall current).
+
+4. Power Supply:
+   - 12V LiPo Battery (3S) or similar for driving the motors. Mount this as low as possible on the base plate.
+   - 5V Power Bank (or a Step-Down Buck Converter from the 12V battery) to power the Raspberry Pi separately and reliably.
+
+5. Miscellaneous:
+   - Jumper wires, breadboard (for prototyping), and perfboard (for final soldering).
+   - Mounting hardware (M3/M4 screws, nuts, zip ties).
+   - Camera Mount: A sturdy, adjustable mount to position the camera on the lip of the trashcan looking outward/upward.

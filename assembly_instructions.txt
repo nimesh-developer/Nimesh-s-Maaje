@@ -1,0 +1,35 @@
+Moving Trashcan - Assembly Instructions
+
+This guide details the physical and electrical assembly of the moving trashcan. The primary goal is stability to prevent the trashcan from tipping over during sudden movements.
+
+Step 1: Preparing the Base and Chassis
+1. Start with the heavy base plate (metal or thick acrylic). This is the foundation.
+2. Mount the 4 DC motors to the base plate using motor brackets. Ensure they are aligned for the Mecanum wheels.
+3. Attach the Mecanum wheels to the motors. Make sure the rollers on the wheels form an 'X' pattern when viewed from the top to ensure correct omnidirectional movement.
+4. Mount the heavy 12V LiPo battery as close to the center and as low on the base plate as possible. This acts as ballast.
+5. Attach any additional weights symmetrically to the lowest point of the base. The lower the center of gravity (CG), the less likely it is to tip.
+
+Step 2: Electrical Assembly (Low Center)
+1. Mount the Motor Drivers on the base plate.
+2. Wire the 4 DC motors to the motor drivers.
+3. Mount the Step-Down Buck Converter (if using one to power the Pi from the 12V battery) on the base plate.
+4. Connect the battery to the motor drivers and the buck converter (make sure to include a main power switch).
+
+Step 3: Mounting the Raspberry Pi and Sensors
+1. Mount the Raspberry Pi on the base plate (or slightly higher if space is constrained, but keep it low).
+2. Wire the control pins from the Motor Drivers to the Raspberry Pi GPIO pins.
+3. Connect the Raspberry Pi power input to the 5V source.
+
+Step 4: Attaching the Trashcan (The Catching Area)
+1. Place the empty trashcan on top of the completed base chassis.
+2. Use strong L-brackets and bolts to secure the bottom of the trashcan to the base plate. It must be rigid; any flexing can lead to tipping.
+3. Install cross-supports if the trashcan is tall and flimsy.
+
+Step 5: Camera Mounting
+1. Attach the sturdy camera mount to the top lip/rim of the trashcan.
+2. Secure the Raspberry Pi Camera to the mount. It should point slightly upwards and forwards to track incoming trash.
+3. Run the camera ribbon cable down the side of the trashcan (use tape or a cable track) and connect it to the Raspberry Pi at the base.
+
+Step 6: Final Stability Check
+1. Before powering on, push the trashcan gently from the top. It should resist tipping and naturally want to right itself due to the heavy base.
+2. Ensure no wires are loose or can get caught in the Mecanum wheels.
