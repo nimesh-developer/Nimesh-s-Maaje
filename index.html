@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biological Catastrophe Engine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="ui-layer">
+        <div id="status-panel">
+            <h2>Bio-Catastrophe Status</h2>
+            <p>Role: <span id="player-role">Connecting...</span></p>
+            <p>Pupils: <span id="pupil-status">Normal</span> (Hold 'P' in light)</p>
+            <p>Temperature: <span id="temp-status">Normal</span> (Spam 'T' in rain)</p>
+            <p>Allergy Level: <span id="allergy-status">Safe</span> (Spam 'F' near flowers)</p>
+            <p>Digestion: <span id="digestion-status">Hungry</span> (Pulse 'D' to eat)</p>
+        </div>
+
+        <div id="blindness-overlay"></div>
+        <div id="sneeze-overlay">ACHOO!</div>
+        <div id="acid-reflux-overlay">ACID REFLUX!</div>
+    </div>
+
+    <div id="game-container">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
