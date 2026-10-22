@@ -47,6 +47,80 @@ canvas {
     color: #ff5555;
 }
 
+#status-panel h3 {
+    margin-bottom: 5px;
+    color: #55ff55;
+}
+
+/* Facial Emote Panel */
+#facial-emote-panel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    width: 250px;
+}
+
+#sliders-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.muscle-slider {
+    width: 100%;
+}
+
+.small-text {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* Digestion Panel */
+#digestion-panel {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid orange;
+    text-align: center;
+}
+
+#rhythm-track {
+    width: 300px;
+    height: 30px;
+    background: #333;
+    position: relative;
+    margin: 10px auto;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#rhythm-target {
+    width: 4px;
+    height: 100%;
+    background: yellow;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#rhythm-note {
+    width: 20px;
+    height: 20px;
+    background: orange;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 0; /* Animated in JS */
+}
+
 /* Mechanical Overlays */
 #blindness-overlay {
     position: absolute;
@@ -60,7 +134,7 @@ canvas {
     z-index: 100;
 }
 
-#sneeze-overlay, #acid-reflux-overlay {
+#sneeze-overlay, #acid-reflux-overlay, #passed-out-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
