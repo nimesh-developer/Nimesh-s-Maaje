@@ -8,6 +8,7 @@ import logging
 import uuid
 import math
 import random
+import os
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -20,8 +21,12 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
         pass
 
 def start_http_server():
+    # Force the working directory to be the directory containing this script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(script_dir)
+
     with socketserver.TCPServer(("", PORT_HTTP), QuietHandler) as httpd:
-        logging.info(f"Serving HTTP on http://localhost:{PORT_HTTP}")
+        logging.info(f"Serving HTTP from {script_dir} on http://localhost:{PORT_HTTP}")
         httpd.serve_forever()
 
 threading.Thread(target=start_http_server, daemon=True).start()
