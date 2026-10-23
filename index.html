@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biological Catastrophe Engine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="ui-layer">
+        <div id="status-panel">
+            <h2>Bio-Catastrophe Status</h2>
+            <p>Body ID: <span id="body-id">...</span></p>
+            <p>Your Role: <span id="player-role">Connecting...</span></p>
+            <hr>
+            <div id="voluntary-controls" style="display:none;">
+                <h3>Musculoskeletal Control</h3>
+                <p>Move: W, A, S, D</p>
+                <p>4D Kick: Spacebar</p>
+                <p>Sneeze Filter: Spam 'F'</p>
+                <p>Bicycle Pedal: Alternating Q/E</p>
+            </div>
+            <div id="involuntary-controls" style="display:none;">
+                <h3>Nervous System Control</h3>
+                <p>Heartbeat (Keep ~70): Pulse 'H'</p>
+                <p>Heart Rate: <span id="heart-rate-display">70</span> BPM</p>
+                <p>Oxygen: <span id="oxygen-display">100</span>% (Hold 'B' to inhale)</p>
+                <p>Pupils: <span id="pupil-status">Dilated</span> (Hold 'P' in light)</p>
+                <p>Temperature: <span id="temp-status">98.6</span> (Spam 'T' in rain)</p>
+            </div>
+        </div>
+
+        <!-- Facial Emote Wheel Panel -->
+        <div id="facial-emote-panel">
+            <h3>Facial Muscles</h3>
+            <p class="small-text">Twitch 12 muscles for emotes</p>
+            <div id="sliders-container">
+                <!-- Sliders generated in JS -->
+            </div>
+        </div>
+
+        <!-- Digestive Rhythm Game -->
+        <div id="digestion-panel">
+            <h3>Digestive Peristalsis</h3>
+            <p>Pulse 'D' when the dot hits the center to digest!</p>
+            <div id="rhythm-track">
+                <div id="rhythm-target"></div>
+                <div id="rhythm-note"></div>
+            </div>
+            <p>Progress: <span id="digestion-progress">0</span>%</p>
+        </div>
+
+        <div id="blindness-overlay"></div>
+        <div id="passed-out-overlay">YOU PASSED OUT! Leaving Temporal Ghost...</div>
+        <div id="sneeze-overlay">ACHOO!</div>
+        <div id="acid-reflux-overlay">ACID REFLUX!</div>
+    </div>
+
+    <div id="game-container">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #222;
+    color: white;
+    font-family: monospace;
+    overflow: hidden; /* Prevent scrolling when breaking out into breakdance windmill */
+}
+
+#game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+canvas {
+    background-color: #87CEEB; /* Sky blue */
+    border: 4px solid #444;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease-out; /* For the Vestibular flip */
+}
+
+/* UI Layer overlaying the canvas */
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass through to canvas */
+    z-index: 10;
+}
+
+#status-panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #555;
+}
+
+#status-panel h2 {
+    margin-top: 0;
+    color: #ff5555;
+}
+
+#status-panel h3 {
+    margin-bottom: 5px;
+    color: #55ff55;
+}
+
+/* Facial Emote Panel */
+#facial-emote-panel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    width: 250px;
+}
+
+#sliders-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.muscle-slider {
+    width: 100%;
+}
+
+.small-text {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* Digestion Panel */
+#digestion-panel {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid orange;
+    text-align: center;
+}
+
+#rhythm-track {
+    width: 300px;
+    height: 30px;
+    background: #333;
+    position: relative;
+    margin: 10px auto;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#rhythm-target {
+    width: 4px;
+    height: 100%;
+    background: yellow;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#rhythm-note {
+    width: 20px;
+    height: 20px;
+    background: orange;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 0; /* Animated in JS */
+}
+
+/* Mechanical Overlays */
+#blindness-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 100;
+}
+
+#sneeze-overlay, #acid-reflux-overlay, #passed-out-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    font-weight: bold;
+    color: red;
+    text-shadow: 2px 2px 10px black;
+    opacity: 0;
+    z-index: 101;
+    pointer-events: none;
+}
+
+/* Vestibular flip class applied to canvas */
+.vestibular-flip {
+    transform: rotate(180deg) !important;
+}
+
+/* Shivering animation applied to canvas container */
+@keyframes shiver {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(5px, -5px); }
+    50% { transform: translate(0, 5px); }
+    75% { transform: translate(-5px, -5px); }
+    100% { transform: translate(0, 0); }
+}
+
+.shivering {
+    animation: shiver 0.05s infinite;
+}
